@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root { --bg: #121212; --accent: #03dac6; --card: #1e1e1e; }
+        body { background: var(--bg); color: white; font-family: sans-serif; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; }
+        .search-bar { width: 100%; max-width: 600px; padding: 15px; background: #333; border: none; border-radius: 8px; color: white; margin: 20px 0; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .ngo-card { background: var(--card); padding: 20px; border-radius: 10px; border-left: 5px solid var(--accent); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Funder Portal</h1>
+        <button onclick="location.href='dashboard.html'" style="background:none; border:1px solid #555; color:white; cursor:pointer;">Back</button>
+    </div>
+    <input type="text" class="search-bar" id="search" placeholder="Search for NGOs by cause or location...">
+    
+    <div class="grid" id="ngoGrid"></div>
+
+    <script>
+        const grid = document.getElementById('ngoGrid');
+        for(let i=1; i<=30; i++) {
+            grid.innerHTML += `
+                <div class="ngo-card">
+                    <h3>NGO ${i}: Global Care</h3>
+                    <p>Focus: Education & Water</p>
+                    <button style="background:var(--accent); border:none; padding:5px 10px; border-radius:3px;">Fund Project</button>
+                </div>
+            `;
+        }
+        // Basic Search Logic
+        document.getElementById('search').addEventListener('input', function(e) {
+            let cards = document.querySelectorAll('.ngo-card');
+            cards.forEach(card => {
+                card.style.display = card.innerText.toLowerCase().includes(e.target.value.toLowerCase()) ? "block" : "none";
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funder Portal</title>
+    <style>
+        :root { --bg: #121212; --surf: #1e1e1e; --accent: #00adb5; --text: #eee; }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        .form-box, .dashboard { background: var(--surf); padding: 30px; border-radius: 12px; }
+        .hidden { display: none; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; }
+        .btn { background: var(--accent); color: white; border: none; padding: 10px 20px; cursor: pointer; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 20px; }
+        .card { background: #2a2a2a; padding: 15px; border-radius: 8px; border-left: 4px solid var(--accent); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="regSection" class="form-box">
+        <h2>Funder Registration</h2>
+        <input type="text" id="fName" placeholder="Organization Name">
+        <input type="email" id="fEmail" placeholder="Business Email">
+        <select>
+            <option>Primary Interest: Education</option>
+            <option>Primary Interest: Healthcare</option>
+            <option>Primary Interest: Environment</option>
+        </select>
+        <button class="btn" onclick="showDashboard()">Register & View NGOs</button>
+    </div>
+
+    <div id="dashSection" class="dashboard hidden">
+        <div style="display:flex; justify-content: space-between; align-items: center;">
+            <h2>Partnered NGOs</h2>
+            <input type="text" placeholder="Filter NGOs..." style="width: 200px;">
+        </div>
+        <div class="grid" id="ngoList"></div>
+    </div>
+</div>
+
+<script>
+    function showDashboard() {
+        document.getElementById('regSection').classList.add('hidden');
+        document.getElementById('dashSection').classList.remove('hidden');
+        const list = document.getElementById('ngoList');
+        for(let i=1; i<=30; i++) {
+            list.innerHTML += `
+                <div class="card">
+                    <h4>NGO Organization ${i}</h4>
+                    <p style="font-size: 12px; color: #aaa;">Focus: Social Welfare & Education</p>
+                    <button class="btn" style="font-size: 10px;">Send Proposal</button>
+                </div>`;
+        }
+    }
+</script>
+</body>
+</html>

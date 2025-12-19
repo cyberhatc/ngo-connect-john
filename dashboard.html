@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root { --bg: #121212; --card: #1e1e1e; --accent: #bb86fc; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; }
+        nav { background: #000; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 20px; font-size: 14px; }
+        .hero { text-align: center; padding: 60px 20px; }
+        .options { display: flex; justify-content: center; gap: 30px; margin-top: 40px; }
+        .role-card { background: var(--card); padding: 40px; width: 250px; border-radius: 15px; cursor: pointer; transition: 0.3s; border: 1px solid #333; }
+        .role-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .role-card h2 { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">UnityBridge Dashboard</div>
+        <div class="nav-links">
+            <a href="#">Our Mission</a>
+            <a href="#">About Us</a>
+            <a href="#">Settings</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Welcome. Who are you today?</h1>
+        <div class="options">
+            <div class="role-card" onclick="location.href='funder-side.html'">
+                <h2>Funder</h2>
+                <p>Browse NGOs and invest in social impact projects.</p>
+            </div>
+            <div class="role-card" onclick="location.href='ngo-side.html'">
+                <h2>NGO</h2>
+                <p>Post projects and find financial backing.</p>
+            </div>
+            <div class="role-card" onclick="location.href='volunteer-side.html'">
+                <h2>Volunteer</h2>
+                <p>Offer your skills to make a difference.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
